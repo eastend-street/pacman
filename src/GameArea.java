@@ -4,25 +4,15 @@ import java.net.URL;
 import java.net.MalformedURLException;
 
 public class GameArea extends JFrame {
-    public GameArea(String title, int width, int height) {
-        setTitle(title);
-        setSize(width, height);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JButton btn = new JButton("New button");
-        add(btn, BorderLayout.NORTH);
-
+    public GameArea() {
+        this.setTitle("Pacman");
+        this.setSize(500, 500);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ImageIcon icon= getImageIcon("https://images.discordapp.net/avatars/398127484983443468/0bc43684999726e69c2ca797200ffffc.png?size=512");
-        setIconImage(icon.getImage());
-
-        JLabel label1 = new JLabel(icon);
-
-        JPanel panel = new JPanel();
-        panel.add(label1);
-        add(panel, BorderLayout.CENTER);
+        this.add(new Cell());
+        this.setVisible(true);
     }
-
 
     ImageIcon getImageIcon(String argUrl) {
         URL url = null;
