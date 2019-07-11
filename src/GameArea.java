@@ -25,12 +25,13 @@ public class GameArea extends JFrame implements Runnable {
 
     Cell[][] cells = new Cell[10][10];
     Cell pacmanLocationCell;
+    Cell enemyLocationCell;
 
     private int[][] initialCellData = {
             {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
             {0, 0, 1, 0, 0, 0, 0, 1, 0, 0},
             {1, 0, 1, 1, 0, 0, 1, 1, 0, 1},
-            {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+            {1, 0, 1, 0, 3, 0, 0, 1, 0, 1},
             {0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
             {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
             {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
@@ -44,12 +45,15 @@ public class GameArea extends JFrame implements Runnable {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (initialCellData[i][j] == 1) {
-                    cells[i][j] = new Cell(i, j, true, false, false);
+                    cells[i][j] = new Cell(i, j, true, false, false, false);
                 } else if (initialCellData[i][j] == 2) {
-                    cells[i][j] = new Cell(i, j, false, true, false);
+                    cells[i][j] = new Cell(i, j, false, true, false, false);
                     pacmanLocationCell = cells[i][j];
+                } else if (initialCellData[i][j] == 3) {
+                    cells[i][j] = new Cell(i, j, false, false, false, true);
+                    enemyLocationCell = cells[i][j];
                 } else {
-                    cells[i][j] = new Cell(i, j, false, false, true);
+                    cells[i][j] = new Cell(i, j, false, false, true, false);
                 }
             }
         }
@@ -69,6 +73,9 @@ public class GameArea extends JFrame implements Runnable {
                     g.fillRect(x, y, 20, 20);
                 } else if (cells[i][j].isPacman) {
                     g.setColor(new Color(251, 246, 6));
+                    g.fillOval(x, y, 20, 20);
+                } else if (cells[i][j].isEnemy) {
+                    g.setColor(new Color(235, 2, 0));
                     g.fillOval(x, y, 20, 20);
                 } else if (cells[i][j].isCookie) {
                     g.setColor(new Color(2, 2, 2));
@@ -93,7 +100,11 @@ public class GameArea extends JFrame implements Runnable {
             Cell nextCell;
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_UP:
-                    nextCell = cells[pacmanLocationCell.getX() - 1][pacmanLocationCell.getY()];
+                    if (pacmanLocationCell.getX() - 1 < 0) {
+                        nextCell = cells[9][pacmanLocationCell.getY()];
+                    } else {
+                        nextCell = cells[pacmanLocationCell.getX() - 1][pacmanLocationCell.getY()];
+                    }
                     if (!nextCell.getIsWall()) {
                         currentCell.setIsPacman(false);
                         currentCell.setIsCookie(false);
@@ -102,7 +113,11 @@ public class GameArea extends JFrame implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_DOWN:
-                    nextCell = cells[pacmanLocationCell.getX() + 1][pacmanLocationCell.getY()];
+                    if (pacmanLocationCell.getX() + 1 > 9) {
+                        nextCell = cells[0][pacmanLocationCell.getY()];
+                    } else {
+                        nextCell = cells[pacmanLocationCell.getX() + 1][pacmanLocationCell.getY()];
+                    }
                     if (!nextCell.getIsWall()) {
                         currentCell.setIsPacman(false);
                         currentCell.setIsCookie(false);
@@ -111,7 +126,11 @@ public class GameArea extends JFrame implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_LEFT:
-                    nextCell = cells[pacmanLocationCell.getX()][pacmanLocationCell.getY() - 1];
+                    if (pacmanLocationCell.getY() - 1 < 0) {
+                        nextCell = cells[pacmanLocationCell.getX()][9];
+                    } else {
+                        nextCell = cells[pacmanLocationCell.getX()][pacmanLocationCell.getY() - 1];
+                    }
                     if (!nextCell.getIsWall()) {
                         currentCell.setIsPacman(false);
                         currentCell.setIsCookie(false);
@@ -120,7 +139,11 @@ public class GameArea extends JFrame implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_RIGHT:
-                    nextCell = cells[pacmanLocationCell.getX()][pacmanLocationCell.getY() + 1];
+                    if (pacmanLocationCell.getY() + 1 > 9) {
+                        nextCell = cells[pacmanLocationCell.getX()][0];
+                    } else {
+                        nextCell = cells[pacmanLocationCell.getX()][pacmanLocationCell.getY() + 1];
+                    }
                     if (!nextCell.getIsWall()) {
                         currentCell.setIsPacman(false);
                         currentCell.setIsCookie(false);

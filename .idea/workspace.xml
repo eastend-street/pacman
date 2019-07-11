@@ -23,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameArea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
+            <state relative-caret-position="278">
+              <caret line="142" column="69" selection-start-line="142" selection-start-column="69" selection-end-line="142" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -35,18 +35,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3">
-              <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+            <state relative-caret-position="1430">
+              <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#406#407#0" expanded="true" />
                 <element signature="e#440#441#0" expanded="true" />
                 <element signature="e#456#457#0" expanded="true" />
                 <element signature="e#490#491#0" expanded="true" />
-                <element signature="e#636#637#0" expanded="true" />
-                <element signature="e#708#709#0" expanded="true" />
+                <element signature="e#721#722#0" expanded="true" />
+                <element signature="e#793#794#0" expanded="true" />
                 <element signature="e#748#749#0" expanded="true" />
                 <element signature="e#784#785#0" expanded="true" />
+                <element signature="e#905#906#0" expanded="true" />
+                <element signature="e#941#942#0" expanded="true" />
                 <element signature="e#649#650#0" expanded="true" />
                 <element signature="e#678#679#0" expanded="true" />
                 <element signature="e#703#704#0" expanded="true" />
@@ -57,6 +59,8 @@
                 <element signature="e#872#873#0" expanded="true" />
                 <element signature="e#1117#1118#0" expanded="true" />
                 <element signature="e#1157#1158#0" expanded="true" />
+                <element signature="e#1361#1362#0" expanded="true" />
+                <element signature="e#1401#1402#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -258,18 +262,20 @@
     <entry file="file://$PROJECT_DIR$/src/GameAreaData.java" />
     <entry file="file://$PROJECT_DIR$/src/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3">
-          <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+        <state relative-caret-position="1430">
+          <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#406#407#0" expanded="true" />
             <element signature="e#440#441#0" expanded="true" />
             <element signature="e#456#457#0" expanded="true" />
             <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#636#637#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
+            <element signature="e#721#722#0" expanded="true" />
+            <element signature="e#793#794#0" expanded="true" />
             <element signature="e#748#749#0" expanded="true" />
             <element signature="e#784#785#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
+            <element signature="e#941#942#0" expanded="true" />
             <element signature="e#649#650#0" expanded="true" />
             <element signature="e#678#679#0" expanded="true" />
             <element signature="e#703#704#0" expanded="true" />
@@ -280,14 +286,16 @@
             <element signature="e#872#873#0" expanded="true" />
             <element signature="e#1117#1118#0" expanded="true" />
             <element signature="e#1157#1158#0" expanded="true" />
+            <element signature="e#1361#1362#0" expanded="true" />
+            <element signature="e#1401#1402#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameArea.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="278">
+          <caret line="142" column="69" selection-start-line="142" selection-start-column="69" selection-end-line="142" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
