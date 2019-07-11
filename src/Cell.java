@@ -6,12 +6,14 @@ public class Cell extends JPanel {
     public int y;
     public boolean isWall = false;
     public boolean isPacman = false;
+    public boolean isCookie = true;
 
-    public Cell(int x, int y, boolean isWall, boolean isPacman) {
+    public Cell(int x, int y, boolean isWall, boolean isPacman, boolean isCookie) {
         this.x = x;
         this.y = y;
         this.isWall = isWall;
         this.isPacman = isPacman;
+        this.isCookie = isCookie;
     }
 
     public int getX() {
@@ -30,6 +32,10 @@ public class Cell extends JPanel {
         return this.isPacman;
     }
 
+    public boolean getIsCookie() {
+        return this.isCookie;
+    }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -44,6 +50,10 @@ public class Cell extends JPanel {
 
     public void setIsPacman(boolean isPacman) {
         this.isPacman = isPacman;
+    }
+
+    public void setIsCookie(boolean isCookie) {
+        this.isCookie = isCookie;
     }
 
 //    @Override

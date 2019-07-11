@@ -44,12 +44,12 @@ public class GameArea extends JFrame implements Runnable {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (initialCellData[i][j] == 1) {
-                    cells[i][j] = new Cell(i, j, true, false);
+                    cells[i][j] = new Cell(i, j, true, false, false);
                 } else if (initialCellData[i][j] == 2) {
-                    cells[i][j] = new Cell(i, j, false, true);
+                    cells[i][j] = new Cell(i, j, false, true, false);
                     pacmanLocationCell = cells[i][j];
                 } else {
-                    cells[i][j] = new Cell(i, j, false, false);
+                    cells[i][j] = new Cell(i, j, false, false, true);
                 }
             }
         }
@@ -70,11 +70,14 @@ public class GameArea extends JFrame implements Runnable {
                 } else if (cells[i][j].isPacman) {
                     g.setColor(new Color(251, 246, 6));
                     g.fillOval(x, y, 20, 20);
-                } else {
+                } else if (cells[i][j].isCookie) {
                     g.setColor(new Color(2, 2, 2));
                     g.fillRect(x, y, 20, 20);
                     g.setColor(new Color(252, 252, 252));
                     g.fillOval(x + 7, y + 7, 5, 5);
+                } else {
+                    g.setColor(new Color(2, 2, 2));
+                    g.fillRect(x, y, 20, 20);
                 }
                 x += 20;
             }
@@ -93,6 +96,7 @@ public class GameArea extends JFrame implements Runnable {
                     nextCell = cells[pacmanLocationCell.getX() - 1][pacmanLocationCell.getY()];
                     if (!nextCell.getIsWall()) {
                         currentCell.setIsPacman(false);
+                        currentCell.setIsCookie(false);
                         nextCell.setIsPacman(true);
                         pacmanLocationCell = nextCell;
                     }
@@ -101,6 +105,7 @@ public class GameArea extends JFrame implements Runnable {
                     nextCell = cells[pacmanLocationCell.getX() + 1][pacmanLocationCell.getY()];
                     if (!nextCell.getIsWall()) {
                         currentCell.setIsPacman(false);
+                        currentCell.setIsCookie(false);
                         nextCell.setIsPacman(true);
                         pacmanLocationCell = nextCell;
                     }
@@ -109,6 +114,7 @@ public class GameArea extends JFrame implements Runnable {
                     nextCell = cells[pacmanLocationCell.getX()][pacmanLocationCell.getY() - 1];
                     if (!nextCell.getIsWall()) {
                         currentCell.setIsPacman(false);
+                        currentCell.setIsCookie(false);
                         nextCell.setIsPacman(true);
                         pacmanLocationCell = nextCell;
                     }
@@ -117,6 +123,7 @@ public class GameArea extends JFrame implements Runnable {
                     nextCell = cells[pacmanLocationCell.getX()][pacmanLocationCell.getY() + 1];
                     if (!nextCell.getIsWall()) {
                         currentCell.setIsPacman(false);
+                        currentCell.setIsCookie(false);
                         nextCell.setIsPacman(true);
                         pacmanLocationCell = nextCell;
                     }
