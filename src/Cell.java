@@ -3,11 +3,19 @@ import javax.swing.JPanel;
 
 public class Cell extends JPanel{
     public boolean isWall = false;
-    public boolean isEmpty = false;
+    public boolean isPacman = false;
 
-    public Cell (boolean isWall, boolean isEmpty){
+    public Cell (boolean isWall, boolean isPacman){
       this.isWall = isWall;
-      this.isEmpty = isEmpty;
+      this.isPacman = isPacman;
+    }
+
+    public boolean getIsWall(){
+        return this.isWall;
+    }
+
+    public boolean getIsPacman(){
+        return this.isPacman;
     }
 
 //    @Override
