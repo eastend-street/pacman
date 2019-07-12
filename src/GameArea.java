@@ -16,10 +16,10 @@ public class GameArea extends JFrame {
         this.getContentPane().setBackground(new Color(2, 2, 2));
         initializeGameArea();
 
-
         MyKeyAdapter myKeyAdapter = new MyKeyAdapter();
         addKeyListener(myKeyAdapter);
 
+        EnemyTimer enemyTimer = new EnemyTimer();
         this.setVisible(true);
     }
 
@@ -194,5 +194,11 @@ public class GameArea extends JFrame {
         }
         ImageIcon icon = new ImageIcon(url);
         return icon;
+    }
+
+    public class Timer {
+        public void runTimer() {
+
+        }
     }
 }
