@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 public class Cell extends JPanel {
     public int x;
     public int y;
+    public int xWidth;
+    public int yHeight;
     public boolean isWall = false;
     public boolean isPacman = false;
     public boolean isCookie = true;
@@ -42,6 +44,14 @@ public class Cell extends JPanel {
         return this.isEnemy;
     }
 
+    public int getXWidth() {
+        return this.xWidth;
+    }
+
+    public int getYHeight() {
+        return this.yHeight;
+    }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -65,6 +75,15 @@ public class Cell extends JPanel {
     public void setIsEnemy(boolean isEnemy) {
         this.isEnemy = isEnemy;
     }
+
+    public void setXWidth(int xWidth) {
+        this.xWidth = xWidth;
+    }
+
+    public void setYHeight(int yHeight) {
+        this.yHeight = yHeight;
+    }
+
 
 //    @Override
 //    public void paintComponent(Graphics g) {

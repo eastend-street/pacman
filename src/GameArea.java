@@ -6,7 +6,7 @@ import java.net.MalformedURLException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class GameArea extends JFrame implements Runnable {
+public class GameArea extends JFrame {
     public GameArea() {
         this.setTitle("Pacman");
         this.setSize(500, 500);
@@ -68,6 +68,8 @@ public class GameArea extends JFrame implements Runnable {
         int y = 100;
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
+                cells[i][j].setXWidth(x);
+                cells[i][j].setYHeight(y);
                 if (cells[i][j].isWall) {
                     g.setColor(new Color(5, 19, 185));
                     g.fillRect(x, y, 20, 20);
@@ -95,29 +97,19 @@ public class GameArea extends JFrame implements Runnable {
 
     public void update(Cell cell) {
         Graphics g = getContentPane().getGraphics();
-        int x = cell.getX();
-        int y = cell.getY();
+        int xWidth = cell.getXWidth();
+        int yHeight = cell.getYHeight() - 20;
 
-        System.out.println("X: " + cell.getX());
-        System.out.println("Y: " + cell.getX());
-        System.out.println("isPacman: " + cell.getIsPacman());
-        System.out.println("isCookie: " + cell.getIsCookie());
-        System.out.println("isEnemy: " + cell.getIsCookie());
-//        if (cell.isPacman) {
-//            g.setColor(new Color(251, 246, 6));
-//            g.fillOval(x, y, 20, 20);
-//        } else if (cell.isEnemy) {
-//            g.setColor(new Color(235, 2, 0));
-//            g.fillOval(x, y, 20, 20);
-//        } else if (cell.isCookie) {
-//            g.setColor(new Color(2, 2, 2));
-//            g.fillRect(x, y, 20, 20);
-//            g.setColor(new Color(252, 252, 252));
-//            g.fillOval(x + 7, y + 7, 5, 5);
-//        } else {
-//            g.setColor(new Color(2, 2, 2));
-//            g.fillRect(x, y, 20, 20);
-//        }
+        if (cell.isPacman) {
+            g.setColor(new Color(251, 246, 6));
+            g.fillOval(xWidth, yHeight, 20, 20);
+        } else if (cell.isEnemy) {
+            g.setColor(new Color(235, 2, 0));
+            g.fillOval(xWidth, yHeight, 20, 20);
+        } else {
+            g.setColor(new Color(2, 2, 2));
+            g.fillRect(xWidth, yHeight, 20, 20);
+        }
     }
 
     private class MyKeyAdapter extends KeyAdapter {
@@ -136,6 +128,7 @@ public class GameArea extends JFrame implements Runnable {
                         currentCell.setIsPacman(false);
                         currentCell.setIsCookie(false);
                         nextCell.setIsPacman(true);
+                        nextCell.setIsCookie(false);
                         pacmanLocationCell = nextCell;
                     }
                     break;
@@ -149,6 +142,7 @@ public class GameArea extends JFrame implements Runnable {
                         currentCell.setIsPacman(false);
                         currentCell.setIsCookie(false);
                         nextCell.setIsPacman(true);
+                        nextCell.setIsCookie(false);
                         pacmanLocationCell = nextCell;
                     }
                     break;
@@ -162,6 +156,7 @@ public class GameArea extends JFrame implements Runnable {
                         currentCell.setIsPacman(false);
                         currentCell.setIsCookie(false);
                         nextCell.setIsPacman(true);
+                        nextCell.setIsCookie(false);
                         pacmanLocationCell = nextCell;
                     }
                     break;
@@ -175,14 +170,17 @@ public class GameArea extends JFrame implements Runnable {
                         currentCell.setIsPacman(false);
                         currentCell.setIsCookie(false);
                         nextCell.setIsPacman(true);
+                        nextCell.setIsCookie(false);
                         pacmanLocationCell = nextCell;
                     }
                     break;
 
             }
-//            update(currentCell);
-//            update(nextCell);
-            repaint();
+
+            if (!nextCell.getIsWall()) {
+                update(currentCell);
+                update(nextCell);
+            }
         }
 
     }
@@ -196,12 +194,5 @@ public class GameArea extends JFrame implements Runnable {
         }
         ImageIcon icon = new ImageIcon(url);
         return icon;
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            repaint();
-        }
     }
 }
