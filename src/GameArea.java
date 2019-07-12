@@ -93,11 +93,38 @@ public class GameArea extends JFrame implements Runnable {
         }
     }
 
+    public void update(Cell cell) {
+        Graphics g = getContentPane().getGraphics();
+        int x = cell.getX();
+        int y = cell.getY();
+
+        System.out.println("X: " + cell.getX());
+        System.out.println("Y: " + cell.getX());
+        System.out.println("isPacman: " + cell.getIsPacman());
+        System.out.println("isCookie: " + cell.getIsCookie());
+        System.out.println("isEnemy: " + cell.getIsCookie());
+//        if (cell.isPacman) {
+//            g.setColor(new Color(251, 246, 6));
+//            g.fillOval(x, y, 20, 20);
+//        } else if (cell.isEnemy) {
+//            g.setColor(new Color(235, 2, 0));
+//            g.fillOval(x, y, 20, 20);
+//        } else if (cell.isCookie) {
+//            g.setColor(new Color(2, 2, 2));
+//            g.fillRect(x, y, 20, 20);
+//            g.setColor(new Color(252, 252, 252));
+//            g.fillOval(x + 7, y + 7, 5, 5);
+//        } else {
+//            g.setColor(new Color(2, 2, 2));
+//            g.fillRect(x, y, 20, 20);
+//        }
+    }
+
     private class MyKeyAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
             Cell currentCell = cells[pacmanLocationCell.getX()][pacmanLocationCell.getY()];
-            Cell nextCell;
+            Cell nextCell = cells[pacmanLocationCell.getX()][pacmanLocationCell.getY()];
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_UP:
                     if (pacmanLocationCell.getX() - 1 < 0) {
@@ -153,6 +180,8 @@ public class GameArea extends JFrame implements Runnable {
                     break;
 
             }
+//            update(currentCell);
+//            update(nextCell);
             repaint();
         }
 
