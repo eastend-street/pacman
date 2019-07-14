@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class GameArea extends JFrame {
     public GameArea() {
@@ -26,6 +27,7 @@ public class GameArea extends JFrame {
     Cell[][] cells = new Cell[10][10];
     Cell pacmanLocationCell;
     Cell enemyLocationCell;
+    String enemyDirection = "RIGHT";
 
     private int[][] initialCellData = {
             {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
@@ -106,9 +108,86 @@ public class GameArea extends JFrame {
         } else if (cell.isEnemy) {
             g.setColor(new Color(235, 2, 0));
             g.fillOval(xWidth, yHeight, 20, 20);
+        } else if (cell.isCookie) {
+            g.setColor(new Color(2, 2, 2));
+            g.fillRect(xWidth, yHeight, 20, 20);
+            g.setColor(new Color(252, 252, 252));
+            g.fillOval(xWidth + 7, yHeight + 7, 5, 5);
         } else {
             g.setColor(new Color(2, 2, 2));
             g.fillRect(xWidth, yHeight, 20, 20);
+        }
+    }
+
+    public void updateEnemy(Cell enemyCurrentCell, Cell enemyNextCell) {
+        enemyCurrentCell.setIsEnemy(false);
+        enemyNextCell.setIsEnemy(true);
+        enemyLocationCell = enemyNextCell;
+        update(enemyCurrentCell);
+        update(enemyNextCell);
+    }
+
+    public void moveEnemy() {
+        Cell currentCell = cells[enemyLocationCell.getX()][enemyLocationCell.getY()];
+        Cell nextCell = cells[enemyLocationCell.getX()][enemyLocationCell.getY()];
+
+        switch (enemyDirection) {
+            case "UP":
+                if (enemyLocationCell.getX() - 1 < 0) {
+                    nextCell = cells[9][enemyLocationCell.getY()];
+                } else {
+                    nextCell = cells[enemyLocationCell.getX() - 1][enemyLocationCell.getY()];
+                }
+                if (!nextCell.getIsWall()) {
+                    currentCell.setIsEnemy(false);
+                    nextCell.setIsEnemy(true);
+                    enemyLocationCell = nextCell;
+                }
+                break;
+            case "DOWN":
+                if (enemyLocationCell.getX() + 1 > 9) {
+                    nextCell = cells[0][enemyLocationCell.getY()];
+                } else {
+                    nextCell = cells[enemyLocationCell.getX() + 1][enemyLocationCell.getY()];
+                }
+                if (!nextCell.getIsWall()) {
+                    currentCell.setIsEnemy(false);
+                    nextCell.setIsEnemy(true);
+                    enemyLocationCell = nextCell;
+                }
+                break;
+            case "LEFT":
+                if (enemyLocationCell.getY() - 1 < 0) {
+                    nextCell = cells[enemyLocationCell.getX()][9];
+                } else {
+                    nextCell = cells[enemyLocationCell.getX()][enemyLocationCell.getY() - 1];
+                }
+                if (!nextCell.getIsWall()) {
+                    currentCell.setIsEnemy(false);
+                    nextCell.setIsEnemy(true);
+                    enemyLocationCell = nextCell;
+                }
+                break;
+            case "RIGHT":
+                if (enemyLocationCell.getY() + 1 > 9) {
+                    nextCell = cells[enemyLocationCell.getX()][0];
+                } else {
+                    nextCell = cells[enemyLocationCell.getX()][enemyLocationCell.getY() + 1];
+                }
+                if (!nextCell.getIsWall()) {
+                    currentCell.setIsEnemy(false);
+                    nextCell.setIsEnemy(true);
+                    enemyLocationCell = nextCell;
+                }
+                break;
+        }
+
+        if (nextCell.getIsWall()) {
+            System.out.println("次は壁。。。");
+            String[] direction = { "UP", "DOWN","RIGHT", "LEFT"};
+//            ランダムで方向を変えてEnemyDirectionに代入する
+        } else {
+            updateEnemy(currentCell, nextCell);
         }
     }
 
@@ -196,9 +275,16 @@ public class GameArea extends JFrame {
         return icon;
     }
 
-    public class Timer {
-        public void runTimer() {
+    public class EnemyTimer implements ActionListener {
+        Timer timer;
 
+        EnemyTimer() {
+            timer = new Timer(500, this);
+            timer.start();
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            moveEnemy();
         }
     }
 }
